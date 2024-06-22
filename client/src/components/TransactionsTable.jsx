@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import apiConfig from "../api.config.js";
 
 const TransactionsTable = ({ month, setMonth }) => {
     const [ search, setSearch ] = useState("");
@@ -10,8 +10,8 @@ const TransactionsTable = ({ month, setMonth }) => {
     const getTransactions = async () => {
         // fetch transactions from API
         try {
-            const response = await axios.get(`/api/transactions?month=${month}&search=${search}&page=${page}&perPage=${perPage}`);
-            setTransactions(response.data);
+            const response = await fetch(`${apiConfig.URL}/api/transactions?month=${month}&search=${search}&page=${page}&perPage=${perPage}`);
+            setTransactions(await response.json());
         } catch (error) {
             console.log(error);
         }

@@ -1,5 +1,3 @@
-// src/components/BarChart.js
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import {
@@ -12,6 +10,7 @@ import {
     Tooltip,
     Legend,
 } from "chart.js";
+import apiConfig from "../api.config.js";
 
 ChartJS.register(
     Title,
@@ -67,8 +66,8 @@ const BarChart = ({ month }) => {
 
     const getBarInfo = async () => {
         try {
-            const response = await axios.get(`/api/barchart?month=${month}`);
-            const barInfo = response.data;
+            const response = await fetch(`${apiConfig.URL}/api/barchart?month=${month}`);
+            const barInfo = await response.json();
             setLabels(barInfo.map((d) => d.range));
             setData(barInfo.map((d) => d.count));
         } catch (error) {

@@ -1,13 +1,13 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import apiConfig from "../api.config.js";
 
 const Statistics = ({ month }) => {
     const [statistics, setStatistics] = useState(null);
 
     const getStatistics = async () => {
         try {
-            const response = await axios.get(`/api/statistics?month=${month}`);
-            setStatistics(response.data);
+            const response = await fetch(`${apiConfig.URL}/api/statistics?month=${month}`);
+            setStatistics(await response.json());
         } catch (error) {
             console.log(error);
         }
