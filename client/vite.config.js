@@ -12,7 +12,9 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            "/api": "http://localhost:5000/",
+            "/api": "https://transactiviz-api.onrender.com",
+            // "/api": "http://127.0.0.1:5000",
+            cors: false
         },
     },
 });
