@@ -49,7 +49,7 @@ const TransactionsTable = ({ month, setMonth }) => {
                     <option value="december">Dec</option>
                 </select>
             </div>
-            {transactions ? (
+            {transactions.length && (
                 <table className="m-4 bg-yellow-100 p-6 border-spacing-2 border-2 rounded-2xl overflow-hidden">
                     <thead>
                         <tr>
@@ -76,8 +76,7 @@ const TransactionsTable = ({ month, setMonth }) => {
                         ))}
                     </tbody>
                 </table>
-                ) : <></>
-            }
+            )}
             <div className=" flex justify-around">
                 <div>
                     <span>Page No.</span>
